@@ -15,6 +15,7 @@ app.set('view engine', 'jsx');
 app.set('views', path.join(__dirname, 'components', 'pages'));
 
 app.use(morgan('dev'));
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(resLocals);
 

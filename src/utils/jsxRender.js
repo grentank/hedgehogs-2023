@@ -8,7 +8,8 @@ import App from '../components/App';
 export default async function jsxRender(pathToFile, initState, cb) {
   try {
     const { default: Component } = await import(pathToFile);
-    const layout = <Layout><App><Component {...initState} /></App></Layout>;
+    initState.componentName = Component.name;
+    const layout = <Layout initState={initState}><App><Component {...initState} /></App></Layout>;
     const html = renderToString(layout);
     cb(null, `<!DOCTYPE html>${html}`);
   } catch (error) {
