@@ -1,5 +1,5 @@
 import express from 'express';
-import { Track } from '../../db/models';
+import { Track } from '../../../db/models';
 
 const tracksRouter = express.Router();
 
@@ -7,16 +7,6 @@ tracksRouter.get('/', async (req, res) => {
   const allTracks = await Track.findAll();
   const initState = { tracks: allTracks };
   res.render('TracksPage', initState);
-});
-
-tracksRouter.post('/', async (req, res) => {
-  try {
-    await Track.create(req.body);
-    res.redirect('/tracks');
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
-  }
 });
 
 tracksRouter.get('/add', (req, res) => res.render('AddTrackPage'));
