@@ -4,7 +4,7 @@ import { Track } from '../../../db/models';
 const tracksRouter = express.Router();
 
 tracksRouter.get('/', async (req, res) => {
-  const allTracks = await Track.findAll();
+  const allTracks = await Track.findAll({ order: [['createdAt', 'DESC']] });
   const initState = { tracks: allTracks };
   res.render('TracksPage', initState);
 });
